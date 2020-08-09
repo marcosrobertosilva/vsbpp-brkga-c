@@ -7,6 +7,7 @@
 #include <ctype.h>
 
 #include "mt19937-64.h"
+#include "hash_table.h"
 
 
 #define MAXINT 0x7fffffff
@@ -450,6 +451,19 @@ void compute_fitness_pop(double** pop, int pop_size, int lchrom, int* binCap, in
     free_ivector(individuo, 0);
 }
 /******************************************************************************/
+double compute_fitness(double* ind, int lchrom, int* binCap, int* binCost,
+    int* weight, int bin_types, int* bin_item)
+{
+    int i, j;
+    int* individuo;
+    double myFitness = 0.0;
+    individuo = ivector(0, lchrom + 1);
+    bubble_sort(ind, individuo, lchrom);
+    myFitness = calc_fitness(individuo, binCap, binCost, weight, lchrom, bin_types, bin_item);
+    free_ivector(individuo, 0);
+    return myFitness;
+}
+/******************************************************************************/
 int get_rand_int(int lower, int upper)
 {
     int num;
@@ -841,7 +855,39 @@ int parse_line(struct config *config, char *buf)
     return 0;
 }
 /******************************************************************************/
+void remove_duplicates_in_elite(double** pop, int pop_size, int lchrom, int ne,
+    int* binCap, int* binCost, int* weight, int bin_types, int* bin_item)
+{
+    
+    int i, j;
+    int has_duplicates = 0;
+    do
+    {
+        hash_start();
+        for(i = 0; i < ne; i++)
+        {
+            int fitness = (int) pop[i][lchrom];
+            int item = hash_search(fitness);
+            if(item != NULL)
+            {
+                hash_insert(t, fitness, 1);
+            } else {
+                /* Generate a new random individual */
+                for (j = 0; j < lchrom; j++)
+                {
+                    pop[i][j] = ((double)randomMT() / MAXINT) / 2.0;
+                }
+                /* copute fitness */
+                double myFitness = compute_fitness(pop[i], lchrom, binCap, binCost, weight, bin_types, bin_item);
+                pop[i][lchrom] = myFitness;
+                has_duplicates = 1;
+            }
+        }
+        sort_pop(pop, pop_size, lchrom);
+    } while(has_duplicates);
 
+}
+/******************************************************************************/
 int main(int argc, char *argv[])
 {
     clock_t start;
@@ -931,6 +977,7 @@ int main(int argc, char *argv[])
     generate_pop(pop, config.pop_size, lchrom + 1);
     compute_fitness_pop(pop, config.pop_size, lchrom, binCap, binCost, weight, bin_types, bin_item);
     sort_pop(pop, config.pop_size, lchrom);
+    remove_duplicates_in_elite(pop, config.pop_size, lchrom, ne, binCap, binCost, weight, bin_types, bin_item);
     
     for (gen = 0; gen < config.max_gen; gen++)
     {

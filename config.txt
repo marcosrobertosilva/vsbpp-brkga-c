@@ -1,5 +1,5 @@
-pop_size = 2000
-max_gen = 100
+pop_size = 100
+max_gen = 30
 pe = 0.15
 pm = 0.15
 rhoe = 0.8
