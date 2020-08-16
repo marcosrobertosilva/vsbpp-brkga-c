@@ -458,6 +458,10 @@ double compute_fitness(double* ind, int lchrom, int* binCap, int* binCost,
     int* individuo;
     double myFitness = 0.0;
     individuo = ivector(0, lchrom + 1);
+    for (j = 0; j < lchrom; j++)
+    {
+        individuo[j] = j;
+    }
     bubble_sort(ind, individuo, lchrom);
     myFitness = calc_fitness(individuo, binCap, binCost, weight, lchrom, bin_types, bin_item);
     free_ivector(individuo, 0);
@@ -857,35 +861,30 @@ int parse_line(struct config *config, char *buf)
 /******************************************************************************/
 void remove_duplicates_in_elite(double** pop, int pop_size, int lchrom, int ne,
     int* binCap, int* binCost, int* weight, int bin_types, int* bin_item)
-{
+{ // https://www.tutorialspoint.com/data_structures_algorithms/hash_table_program_in_c.htm
     
     int i, j;
     int has_duplicates = 0;
-    do
+    hash_start();
+    for(i = 0; i < ne; i++)
     {
-        hash_start();
-        for(i = 0; i < ne; i++)
+        int fitness = (int) pop[i][lchrom];
+        struct DataItem* item = hash_search(fitness);
+        if(item == NULL)
         {
-            int fitness = (int) pop[i][lchrom];
-            int item = hash_search(fitness);
-            if(item != NULL)
+            hash_insert(fitness, 1);
+        } else {
+            
+            for (j = 0; j < lchrom; j++)
             {
-                hash_insert(t, fitness, 1);
-            } else {
-                /* Generate a new random individual */
-                for (j = 0; j < lchrom; j++)
-                {
-                    pop[i][j] = ((double)randomMT() / MAXINT) / 2.0;
-                }
-                /* copute fitness */
-                double myFitness = compute_fitness(pop[i], lchrom, binCap, binCost, weight, bin_types, bin_item);
-                pop[i][lchrom] = myFitness;
-                has_duplicates = 1;
+                pop[i][j] = ((double)randomMT() / MAXINT) / 2.0;
             }
+            double myFitness = compute_fitness(pop[i], lchrom, binCap, binCost, weight, bin_types, bin_item);
+            pop[i][lchrom] = myFitness;
+            has_duplicates = 1;
         }
-        sort_pop(pop, pop_size, lchrom);
-    } while(has_duplicates);
-
+    }
+    sort_pop(pop, pop_size, lchrom);
 }
 /******************************************************************************/
 int main(int argc, char *argv[])
@@ -977,7 +976,7 @@ int main(int argc, char *argv[])
     generate_pop(pop, config.pop_size, lchrom + 1);
     compute_fitness_pop(pop, config.pop_size, lchrom, binCap, binCost, weight, bin_types, bin_item);
     sort_pop(pop, config.pop_size, lchrom);
-    remove_duplicates_in_elite(pop, config.pop_size, lchrom, ne, binCap, binCost, weight, bin_types, bin_item);
+    // remove_duplicates_in_elite(pop, config.pop_size, lchrom, ne, binCap, binCost, weight, bin_types, bin_item);
     
     for (gen = 0; gen < config.max_gen; gen++)
     {
@@ -993,7 +992,6 @@ int main(int argc, char *argv[])
 
     double best_cost = pop[0][lchrom];
     /* Run tabu search in the elite of the population */
-    /*
     printf("Best cost before tabu search: %.2f\n", best_cost);
     for(int i = 0; i < ne; i++)
     {
@@ -1005,7 +1003,6 @@ int main(int argc, char *argv[])
             best_cost = pop[i][lchrom];
         }
     }
-    */
 
     printf("Best cost = %.2f\n", best_cost);
     tempo = (double)(clock() - start) / CLOCKS_PER_SEC;
