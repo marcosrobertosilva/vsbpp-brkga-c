@@ -1,0 +1,21 @@
+﻿  Using triplet "x86-windows" from "C:\Users\evsro\source\repos\vcpkg\installed\x86-windows\"
+  vsbpp-brkga.cpp
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(157,10): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(162,9): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(166,9): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(180,9): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(191,10): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(195,5): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(196,5): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(335,12): error C2086: 'time_t t': redefinition
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(334): message : see declaration of 't'
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(543,12): error C2086: 'time_t t': redefinition
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(534): message : see declaration of 't'
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(822,13): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(824,5): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(829,13): error C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(837,5): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(987,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(988,31): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(949,9): error C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\evsro\source\repos\vsbpp-brkga-c\cpp\cpp\vsbpp-brkga.cpp(973,10): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
